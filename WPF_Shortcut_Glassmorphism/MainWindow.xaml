@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Shortcut_Glassmorphism"
         mc:Ignorable="d"
-        Background="White"
-        Opacity="0.15"
+        Background="#01000000"
         AllowsTransparency="True"
         WindowStyle="None"
         ResizeMode="NoResize"
         Loaded="Window_Loaded">
-    <Border BorderBrush="White" BorderThickness="1">
+    <Border BorderBrush="White" BorderThickness="1" Opacity="0.3">
+        <Grid x:Name="ShortcutGrid">
+        </Grid>
     </Border>
 </Window>

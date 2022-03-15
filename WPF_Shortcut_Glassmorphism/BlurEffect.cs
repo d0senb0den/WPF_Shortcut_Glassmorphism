@@ -10,10 +10,10 @@ namespace WPF_Shortcut_Glassmorphism
     {
         [DllImport("user32.dll")]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
-        internal void EnableBlur(Window window)
+        internal static void EnableBlur(Window window)
         {
-            var windowHelper = new WindowInteropHelper(window);
-            var accent = new AccentPolicy();
+            WindowInteropHelper windowHelper = new(window);
+            AccentPolicy accent = new();
 
 
             //To enable blur behind the window
@@ -23,7 +23,7 @@ namespace WPF_Shortcut_Glassmorphism
             var accentPtr = Marshal.AllocHGlobal(accentStructSize);
             Marshal.StructureToPtr(accent, accentPtr, false);
 
-            var data = new WindowCompositionAttributeData();
+            WindowCompositionAttributeData data = new();
             data.Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY;
             data.SizeOfData = accentStructSize;
             data.Data = accentPtr;
