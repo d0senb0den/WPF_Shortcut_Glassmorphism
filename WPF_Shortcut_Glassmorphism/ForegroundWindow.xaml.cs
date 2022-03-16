@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -44,32 +45,31 @@ namespace WPF_Shortcut_Glassmorphism
                 ShortcutGrid.RowDefinitions.Add(row);
 
 
-                Frame frame = new();
-                frame.Height = SystemParameters.PrimaryScreenHeight * 0.11;
-                frame.Width = SystemParameters.PrimaryScreenWidth * 0.15;
-                frame.Background = Brushes.White;
-                frame.Margin = new Thickness(0, 10, 0, 10);
-                frame.BorderBrush = Brushes.DarkSlateGray;
-                frame.BorderThickness = new Thickness(1, 1, 1, 1);
-                frame.Content = new StackPanel
+                Border border = new();
+                border.Height = SystemParameters.PrimaryScreenHeight * 0.11;
+                border.Width = SystemParameters.PrimaryScreenWidth * 0.15;
+                border.Background = Brushes.White;
+                border.Margin = new Thickness(0, 5, 0, 5);
+                //border.BorderBrush = Brushes.Gray;
+                //border.BorderThickness = new Thickness(0, 0, 0.5, 0.5);
+                border.CornerRadius = new CornerRadius(5);
+                border.Effect = new DropShadowEffect() { ShadowDepth = 1, Opacity = 0.5 };
+                border.Child = new StackPanel
                 {
-
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                     Children =
                         {
+                            new Border() { Child =
                             new Label
                             {
                                 Content = s.Command,
                                 HorizontalAlignment = HorizontalAlignment.Center,
                                 //LineBreakMode = LineBreakMode.WordWrap,
                             },
-                            new Line
-                            {
-                                StrokeThickness = 2,
-                                Stroke = Brushes.Red,
-                                X1 = 0,
-                                X2 = 100,
-                                HorizontalAlignment= HorizontalAlignment.Center,
-                            },
+                            BorderBrush = Brushes.Gray,
+                            BorderThickness = new Thickness(1,1, 1, 1),
+            },
                             new Label
                             {
                                 Content = s.Description,
@@ -80,19 +80,19 @@ namespace WPF_Shortcut_Glassmorphism
                             }
                         },
                 };
-                ShortcutGrid.Children.Add(frame);
-                Grid.SetColumn(frame, 0);
-                Grid.SetRow(frame, i);
+    ShortcutGrid.Children.Add(border);
+                Grid.SetColumn(border, 0);
+                Grid.SetRow(border, i);
                 i++;
             }
         }
 
         public void Shortcuts(List<Shortcut> shortcuts)
-        {
-            shortcuts.Add(new Shortcut("Ctrl + C", "Copy"));
-            shortcuts.Add(new Shortcut("Ctrl + V", "Paste"));
-            shortcuts.Add(new Shortcut("Ctrl + X", "Cut"));
-            shortcuts.Add(new Shortcut("Ctrl + A", "Select all text"));
-        }
+{
+    shortcuts.Add(new Shortcut("Ctrl + C", "Copy"));
+    shortcuts.Add(new Shortcut("Ctrl + V", "Paste"));
+    shortcuts.Add(new Shortcut("Ctrl + X", "Cut"));
+    shortcuts.Add(new Shortcut("Ctrl + A", "Select all text"));
+}
     }
 }
