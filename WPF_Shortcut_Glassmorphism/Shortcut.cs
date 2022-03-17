@@ -8,12 +8,12 @@ namespace WPF_Shortcut_Glassmorphism
 {
     public class Shortcut
     {
-        public string Command { get; set; }
+        public string[] Keys { get; set; }
         public string Description { get; set; }
 
-        public Shortcut(string command, string description)
+        public Shortcut(string description, params string[] keys)
         {
-            Command = command;
+            Keys = keys;
             Description = description;
         }
     }

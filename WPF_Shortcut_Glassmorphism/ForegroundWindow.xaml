@@ -8,7 +8,24 @@
          Background="#01000000"
         AllowsTransparency="True"
         WindowStyle="None"
-        ResizeMode="NoResize">
-    <Grid x:Name="ShortcutGrid" HorizontalAlignment="Left">
+        ResizeMode="NoResize"
+        >
+
+    <Grid x:Name="MainGrid" Margin="0,50,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Content="Discord" FontFamily="Arial" FontSize="25" Foreground="White">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="2">
+                </DropShadowEffect>
+            </Label.Effect>
+        </Label>
+        <Grid Grid.Row="1" x:Name="ShortcutGrid" HorizontalAlignment="Left">
+        </Grid>
     </Grid>
 </Window>
