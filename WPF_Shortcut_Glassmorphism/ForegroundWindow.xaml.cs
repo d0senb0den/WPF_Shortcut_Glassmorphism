@@ -49,11 +49,13 @@ namespace WPF_Shortcut_Glassmorphism
                 border.Height = SystemParameters.PrimaryScreenHeight * 0.11;
                 border.Width = SystemParameters.PrimaryScreenWidth * 0.15;
                 border.Background = Brushes.White;
+                border.Opacity = 0.8;
                 border.Margin = new Thickness(0, 5, 0, 5);
                 //border.BorderBrush = Brushes.Gray;
                 //border.BorderThickness = new Thickness(0, 0, 0.5, 0.5);
                 border.CornerRadius = new CornerRadius(5);
                 border.Effect = new DropShadowEffect() { ShadowDepth = 1, Opacity = 0.5 };
+                
                 border.Child = new StackPanel
                 {
                     HorizontalAlignment = HorizontalAlignment.Center,
@@ -66,9 +68,13 @@ namespace WPF_Shortcut_Glassmorphism
                                 Content = s.Command,
                                 HorizontalAlignment = HorizontalAlignment.Center,
                                 //LineBreakMode = LineBreakMode.WordWrap,
+                                FontFamily = new FontFamily("Arial"),
+                                FontSize = 15
                             },
                             BorderBrush = Brushes.Gray,
-                            BorderThickness = new Thickness(1,1, 1, 1),
+                            BorderThickness = new Thickness(0.5,0.5, 1.5, 1.5),
+                            CornerRadius = new CornerRadius(2),
+                            
             },
                             new Label
                             {
@@ -76,7 +82,8 @@ namespace WPF_Shortcut_Glassmorphism
                                 HorizontalAlignment = HorizontalAlignment.Center,
                                 //LineBreakMode = LineBreakMode.WordWrap,
                                 //FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
-                                Foreground = Brushes.Orange,
+                                FontFamily = new FontFamily("Arial"),
+                                FontSize = 15
                             }
                         },
                 };
