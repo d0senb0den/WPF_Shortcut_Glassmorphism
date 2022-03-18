@@ -40,7 +40,7 @@ namespace WPF_Shortcut_Glassmorphism
             int i = 0;
             ShortcutGrid.Margin = new Thickness(50, 0, 0, 0);
 
-            
+
             foreach (var s in shortcuts)
             {
                 RowDefinition row = new();
@@ -54,10 +54,18 @@ namespace WPF_Shortcut_Glassmorphism
                 border.Background = Brushes.White;
                 border.Opacity = 0.7;
                 border.Margin = new Thickness(0, 5, 0, 5);
-                //border.BorderBrush = Brushes.Gray;
-                //border.BorderThickness = new Thickness(0, 0, 0.5, 0.5);
+                if (i == 0)
+                {
+                    border.BorderBrush = Brushes.Orange;
+                    border.BorderThickness = new Thickness(3);
+                    //border.Effect = new DropShadowEffect() { Color=Colors.Orange,ShadowDepth = 0, Opacity = 0.5, BlurRadius=5};
+                }
+                //else
+                //{
+                    border.Effect = new DropShadowEffect() { ShadowDepth = 1, Opacity = 0.5 };
+                //}
                 border.CornerRadius = new CornerRadius(5);
-                border.Effect = new DropShadowEffect() { ShadowDepth = 1, Opacity = 0.5 };
+
 
                 RadialGradientBrush radialGradient = new RadialGradientBrush();
 
@@ -74,7 +82,7 @@ namespace WPF_Shortcut_Glassmorphism
 
                 // Create four gradient stops.
                 radialGradient.GradientStops.Add(new GradientStop(Color.FromArgb(179, 255, 255, 255), 0.0));
-                radialGradient.GradientStops.Add(new GradientStop(Color.FromArgb(26, 255,255,255), 1.1));
+                radialGradient.GradientStops.Add(new GradientStop(Color.FromArgb(26, 255, 255, 255), 1.1));
 
                 // Freeze the brush (make it unmodifiable) for performance benefits.
                 radialGradient.Freeze();
@@ -107,6 +115,7 @@ namespace WPF_Shortcut_Glassmorphism
                                                     RadiusY = 8,
                                                     Stroke =new SolidColorBrush(Color.FromRgb(96, 175, 229)),
                                                     StrokeThickness = -2,
+                                                    ClipToBounds = true
                                                 },
                                                 new Label
                                                 {
@@ -119,14 +128,14 @@ namespace WPF_Shortcut_Glassmorphism
                                                 },
                                             },
                                         },
-                                        //CornerRadius = new CornerRadius(8),
-                                        //BorderBrush = Brushes.Blue,
-                                        //BorderThickness = new Thickness(2),
+                                        CornerRadius = new CornerRadius(8),
+                                        BorderBrush = new SolidColorBrush(Color.FromArgb(179, 96, 175, 229)),
+                                        BorderThickness = new Thickness(1,1,4,4),
                                         //Effect = new DropShadowEffect()
                                         //{
                                         //    ShadowDepth = 0,
                                         //    BlurRadius = 5,
-                                        //    Color = Color.FromRgb(96, 175, 229)
+                                        //    Color = Color.FromRgb(96, 175, 229), RenderingBias = RenderingBias.Quality
                                         //}
                                     },
                                     new Label
@@ -186,11 +195,12 @@ namespace WPF_Shortcut_Glassmorphism
                                 //LineBreakMode = LineBreakMode.WordWrap,
                                 //FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                                 FontFamily = new FontFamily("Arial"),
-                                FontSize = 15
+                                FontSize = 15,
+                                FontWeight = (i == 0 ? FontWeights.DemiBold : FontWeights.Normal),
                             }
                         },
                 };
-    ShortcutGrid.Children.Add(border);
+                ShortcutGrid.Children.Add(border);
                 Grid.SetColumn(border, 0);
                 Grid.SetRow(border, i);
                 i++;
@@ -198,11 +208,11 @@ namespace WPF_Shortcut_Glassmorphism
         }
 
         public void Shortcuts(List<Shortcut> shortcuts)
-{
-    shortcuts.Add(new Shortcut("Copy", "Ctrl", "C"));
-    shortcuts.Add(new Shortcut("Paste", "Ctrl", "V"));
-    shortcuts.Add(new Shortcut("Cut", "Ctrl", "X"));
-    shortcuts.Add(new Shortcut("Select all text", "Ctrl", "A"));
-}
+        {
+            shortcuts.Add(new Shortcut("Copy", "Ctrl", "C"));
+            shortcuts.Add(new Shortcut("Paste", "Ctrl", "V"));
+            shortcuts.Add(new Shortcut("Cut", "Ctrl", "X"));
+            shortcuts.Add(new Shortcut("Select all text", "Ctrl", "A"));
+        }
     }
 }
